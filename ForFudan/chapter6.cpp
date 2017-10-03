@@ -46,11 +46,74 @@ class Test: public Rectangle
 		void Show() {Rectangle:Show();}
 };
 
+class A
+{
+	private:
+		int a;
+	public:
+		void func() {cout << "a.func" << endl;}
+		void setA(int x) {a = x;}
+		void showA() {cout << "a=" << a << endl;}
+};
+
+class B
+{
+	private:
+		int b;
+	public:
+		void func() {cout << "b.func" << endl;}
+		void setB(int x) {b = x;}
+		void showB() {cout << "b="<<b<<endl;}
+};
+
+class C: public A, public B
+{
+	private: 
+		int c;
+	public:
+		void setC(int x, int y) 
+		{
+			c = x;
+			setB(y);
+		}
+		void showC()
+		{
+			showB();
+			cout << "c=" << c << endl;
+		}
+		void hun1() {A::func();}
+		void hun2() {B::func();}
+};
+
+
 int main()
 {
 //	Test a(1,2,3,4);
 //	a.Show();
-	Rectangle b(1,2,3,4);
-	b.Show();
-	b.SayHi();
+//	Rectangle b(1,2,3,4);
+//	b.Show();
+//	b.SayHi();
+
+	/**
+	* more inheril
+	*/
+//	C obj;
+//	obj.setA(53);
+//	obj.showA();
+//	obj.setC(55, 58);
+//	obj.showC();
+//	obj.setB(56);
+//	obj.showB();
+
+	/**
+	* ambiguity
+	*/
+	C obj;
+	obj.A::func();
+	obj.B::func();
+	obj.hun1();
+	obj.hun2();
+	C *c1 = new C;
+	c1->A::func();
+	c1->B::func();
 }
