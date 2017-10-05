@@ -2,3 +2,5 @@ Exercise/*.exe
 Exercise/*.out
 ForFudan/*.out
 ForFudan/*.exe
+ForFudan/*.o
+ForFudan/*.lnk
